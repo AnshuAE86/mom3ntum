@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { User, Quest, Achievement, ViewState } from '../types';
-import { TrendingUp, Award, Zap, Users, Star, Trophy, Target } from 'lucide-react';
+import { TrendingUp, Award, Zap, Users, Star, Trophy, Target, X } from 'lucide-react';
 
 interface DashboardProps {
   user: User;
@@ -10,10 +10,40 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ user, activeQuests, achievements, onNavigate }) => {
+  const [showAllBadges, setShowAllBadges] = useState(false);
   const completionRate = Math.round((activeQuests.filter(q => q.completed).length / activeQuests.length) * 100) || 0;
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6 animate-fade-in relative">
+      
+      {/* All Badges Modal */}
+      {showAllBadges && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="bg-white rounded-3xl p-6 max-w-2xl w-full shadow-2xl relative max-h-[80vh] overflow-y-auto">
+             <button onClick={() => setShowAllBadges(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+               <X size={24} />
+             </button>
+             <h3 className="text-2xl font-bold text-slate-800 mb-2">All Achievements</h3>
+             <p className="text-slate-500 mb-6">Unlock badges by completing quests and engaging with the community.</p>
+             
+             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {achievements.map((ach) => {
+                  const unlocked = user.achievements.includes(ach.id);
+                  return (
+                    <div key={ach.id} className={`flex flex-col items-center text-center p-4 rounded-xl border ${unlocked ? 'bg-indigo-50 border-indigo-100' : 'bg-slate-50 border-slate-100 opacity-60 grayscale'}`}>
+                      <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 ${unlocked ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-200 text-slate-400'}`}>
+                        <ach.icon size={28} />
+                      </div>
+                      <span className="font-bold text-slate-800 text-sm mb-1">{ach.title}</span>
+                      <span className="text-xs text-slate-500">{ach.description}</span>
+                    </div>
+                  );
+                })}
+             </div>
+          </div>
+        </div>
+      )}
+
       {/* Header Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
@@ -87,7 +117,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user, activeQuests, achiev
                     {quest.type.toUpperCase()}
                   </span>
                   <span className="text-sm font-bold text-yellow-600 flex items-center gap-1">
-                    +{quest.rewardPoints} Pts
+                    +{quest.rewardPoints} MP
                   </span>
                 </div>
                 <h4 className="font-semibold text-slate-800 mb-1">{quest.title}</h4>
@@ -113,9 +143,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ user, activeQuests, achiev
         {/* Achievements */}
         <div>
           <h3 className="text-xl font-bold text-slate-800 mb-4">Achievements</h3>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-             <div className="grid grid-cols-3 gap-4">
-                {achievements.map((ach) => {
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 h-full flex flex-col">
+             <div className="grid grid-cols-3 gap-4 mb-4">
+                {achievements.slice(0, 6).map((ach) => {
                   const unlocked = user.achievements.includes(ach.id);
                   return (
                     <div key={ach.id} className="flex flex-col items-center text-center">
@@ -127,8 +157,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ user, activeQuests, achiev
                   );
                 })}
              </div>
-             <div className="mt-6 pt-6 border-t border-slate-100 text-center">
-                <button className="text-sm text-blue-600 font-semibold hover:text-blue-700">View All Badges</button>
+             <div className="mt-auto pt-6 border-t border-slate-100 text-center">
+                <button onClick={() => setShowAllBadges(true)} className="text-sm text-blue-600 font-semibold hover:text-blue-700">View All Badges</button>
              </div>
           </div>
         </div>

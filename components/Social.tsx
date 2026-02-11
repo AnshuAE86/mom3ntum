@@ -30,7 +30,7 @@ export const Social: React.FC<SocialProps> = ({ user }) => {
     { id: '12', user: 'BassHead', text: 'Who is going to the festival next month?', timestamp: new Date(Date.now() - 200000), channel: 'events' },
     { id: '13', user: 'SportsFan88', text: 'The referee missed that call completely!', timestamp: new Date(Date.now() - 60000), channel: 'sports' },
     { id: '14', user: 'GymRat', text: 'Anyone want to discuss the training regimen?', timestamp: new Date(Date.now() - 120000), channel: 'sports' },
-    { id: '15', user: 'TicketMaster', text: 'New right-to-buy options are up in the Arcade!', timestamp: new Date(Date.now() - 10000), channel: 'general' },
+    { id: '15', user: 'TicketMaster', text: 'New face-value-access options are up in the Arcade!', timestamp: new Date(Date.now() - 10000), channel: 'general' },
     // Historical message to demonstrate date header
     { id: '0', user: 'OldTimer', text: 'Welcome to the beta channel!', timestamp: new Date(Date.now() - 86400000 * 2), channel: 'general' } 
   ]);

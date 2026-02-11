@@ -11,7 +11,7 @@ export const Landing: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
           Tickets. At face value. Finally.
         </h1>
         <p className="text-xl text-slate-600 mb-10">
-          Earn a reserved opportunity to buy tickets at their original price.
+          Earn face-value-access to buy tickets at their original price.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 text-left md:text-center">

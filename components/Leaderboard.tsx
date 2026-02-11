@@ -64,7 +64,7 @@ export const Leaderboard: React.FC = () => {
                 {metric === 'xp' ? (
                   <span className="text-blue-600">{user.xp.toLocaleString()} XP</span>
                 ) : (
-                  <span className="text-yellow-600">{user.points.toLocaleString()} Pts</span>
+                  <span className="text-yellow-600">{user.points.toLocaleString()} MP</span>
                 )}
               </div>
             </div>

@@ -1,6 +1,7 @@
+
 export interface Activity {
   id: string;
-  type: 'quest' | 'achievement' | 'social' | 'game';
+  type: 'quest' | 'achievement' | 'social' | 'game' | 'fvt' | 'reward';
   description: string;
   timestamp: Date;
   reward?: string;
@@ -11,10 +12,12 @@ export interface User {
   name: string;
   handle: string;
   avatar: string;
+  bio: string;
   level: number;
   xp: number;
   maxXp: number;
   points: number;
+  fvt: number; // Face Value Tickets count (Max 5)
   premium: boolean;
   achievements: string[];
   joinedDate: Date;
@@ -40,12 +43,19 @@ export interface Quest {
   link?: string;
 }
 
+export interface Reward {
+  type: 'mp' | 'xp' | 'badge' | 'avatar' | 'banner' | 'sticker' | 'fvt';
+  value: number | string;
+  label: string;
+}
+
 export interface BattlePassTier {
   tier: number;
-  freeReward: string;
-  premiumReward: string;
   requiredXp: number;
-  claimed: boolean;
+  freeReward: Reward;
+  premiumReward: Reward;
+  claimedFree: boolean;
+  claimedPremium: boolean;
 }
 
 export interface ChatMessage {

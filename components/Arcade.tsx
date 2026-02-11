@@ -38,11 +38,11 @@ const MARKET_ITEMS: ArcadeItem[] = [
   {
     id: '2',
     title: 'Presale Access: Wembley',
-    description: 'Secure your right to buy 2 tickets at face value for the finals.',
+    description: 'Secure your face-value-access for 2 tickets at the finals.',
     image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop',
     type: 'access',
     cost: 2000,
-    tagLabel: 'Right-to-Buy',
+    tagLabel: 'Face-Value-Access',
     tagColor: 'text-indigo-500 bg-indigo-50',
     actionLabel: 'Reserve',
     successLabel: 'Reserved'
@@ -66,7 +66,7 @@ const MARKET_ITEMS: ArcadeItem[] = [
     image: 'https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=2070&auto=format&fit=crop',
     type: 'access',
     cost: 1500,
-    tagLabel: 'Right-to-Buy',
+    tagLabel: 'Face-Value-Access',
     tagColor: 'text-purple-500 bg-purple-50',
     actionLabel: 'Reserve',
     successLabel: 'Reserved'
@@ -92,11 +92,11 @@ const WheelModal: React.FC<{ onClose: () => void; onWin: (amount: number) => voi
 
   // Rewards configuration - High contrast colors
   const rewards = [
-    { label: '50 Pts', value: 50, color: '#2563eb' }, // Blue-600
+    { label: '50 MP', value: 50, color: '#2563eb' }, // Blue-600
     { label: '100 XP', value: 0, color: '#7c3aed' }, // Violet-600
-    { label: '200 Pts', value: 200, color: '#059669' }, // Emerald-600
+    { label: '200 MP', value: 200, color: '#059669' }, // Emerald-600
     { label: 'Try Again', value: 0, color: '#475569' }, // Slate-600
-    { label: '500 Pts', value: 500, color: '#d97706' }, // Amber-600
+    { label: '500 MP', value: 500, color: '#d97706' }, // Amber-600
     { label: '10 XP', value: 0, color: '#db2777' }, // Pink-600
   ];
   
@@ -115,7 +115,7 @@ const WheelModal: React.FC<{ onClose: () => void; onWin: (amount: number) => voi
     setTimeout(() => {
       setSpinning(false);
       // Logic for demo win
-      const wonReward = { label: '100 Pts', value: 100 }; 
+      const wonReward = { label: '100 MP', value: 100 }; 
       setWinResult(wonReward);
       
       // Confetti Effect
@@ -273,7 +273,7 @@ export const Arcade: React.FC<ArcadeProps> = ({ user, onOpenSpin, onSpendPoints 
                    <div>
                       <p className="font-bold text-slate-800 line-clamp-1">{selectedItem.title}</p>
                       <div className="flex items-center gap-2 mt-1">
-                          <span className="text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded border border-yellow-100">{selectedItem.cost} Pts</span>
+                          <span className="text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded border border-yellow-100">{selectedItem.cost} MP</span>
                       </div>
                    </div>
                 </div>
@@ -285,7 +285,7 @@ export const Arcade: React.FC<ArcadeProps> = ({ user, onOpenSpin, onSpendPoints 
                 ) : (
                     <div className="flex items-center justify-between text-sm text-slate-500 mb-6 px-1">
                         <span>Current Balance:</span>
-                        <span className="font-bold text-slate-800">{user.points.toLocaleString()} Pts</span>
+                        <span className="font-bold text-slate-800">{user.points.toLocaleString()} MP</span>
                     </div>
                 )}
 
@@ -309,7 +309,7 @@ export const Arcade: React.FC<ArcadeProps> = ({ user, onOpenSpin, onSpendPoints 
            <p className="text-slate-500">Play games or use your points to access exclusive opportunities.</p>
         </div>
         <div className="bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-200 font-bold text-blue-600">
-           Balance: {user.points.toLocaleString()} Pts
+           Balance: {user.points.toLocaleString()} MP
         </div>
       </div>
 
@@ -363,7 +363,7 @@ export const Arcade: React.FC<ArcadeProps> = ({ user, onOpenSpin, onSpendPoints 
                            <p className="text-sm text-slate-500 mb-4">{item.description}</p>
                        </div>
                        <div className="mt-auto flex justify-between items-center">
-                          <span className="text-sm font-bold text-slate-700">{item.cost} Pts {item.type === 'raffle' ? '/ Entry' : ''}</span>
+                          <span className="text-sm font-bold text-slate-700">{item.cost} MP {item.type === 'raffle' ? '/ Entry' : ''}</span>
                           {isPurchased ? (
                               <button disabled className="bg-green-100 text-green-700 px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-1 cursor-default">
                                   <CheckCircle size={16} /> {item.successLabel}

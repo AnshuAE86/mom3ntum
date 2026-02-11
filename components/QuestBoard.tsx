@@ -50,7 +50,7 @@ export const QuestBoard: React.FC<QuestBoardProps> = ({ quests, onComplete, onAd
               <p className="text-sm text-slate-500">{quest.description}</p>
               <div className="flex items-center gap-4 mt-2 justify-center md:justify-start">
                 <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">+{quest.rewardXp} XP</span>
-                <span className="text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-1 rounded">+{quest.rewardPoints} Pts</span>
+                <span className="text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-1 rounded">+{quest.rewardPoints} MP</span>
               </div>
             </div>
 
